@@ -16,7 +16,7 @@
 
     /* REGION: DevQA Err */
         console.log('ConflicMerge#2: CORRECCION__.DevANG -> DevQA'); // @DevANG: ConflicMerge#2
-        console.log('ConflicRebase#1: ERR DevQA'); // @DevQA: ConflicRebase#1
+        console.log('ConflicRebaseOrMerge#1: ERR DevQA'); // @DevQA: ConflicRebaseOrMerge#1
     /* ENDREGION: DevQA Err */
 
     /* REGION: DevANG -> DevQA */
