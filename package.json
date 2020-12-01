@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Craken420/AdvancedGitPractice/issues"
   },
-  "homepage": "https://github.com/Craken420/AdvancedGitPractice#readme"
+  "homepage": "https://github.com/Craken420/AdvancedGitPractice#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
