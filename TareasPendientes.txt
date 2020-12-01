@@ -1,0 +1,2 @@
+Hacer un Rebase O Merge de DevANG -> DevQA
+Hacer un Rebase O Merge de DevQA -> main
