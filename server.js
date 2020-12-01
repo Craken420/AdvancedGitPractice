@@ -14,3 +14,7 @@
     console.log('Conflic-Merge#1: DEV-ANG'); // Conflic-Merge DEV-ANG
     console.log('Conflic-Merge#1: DEV-QA'); // Conflic-Merge DEV-QA
 /* ENDREGION: Dev-Ang */
+
+/* REGION: DEV QA */
+    console.log('Conflic-Merge#2: DEV-QA - ERROR'); // Conflic-Merge DEV-QA
+/* ENDREGION: DEV QA */
