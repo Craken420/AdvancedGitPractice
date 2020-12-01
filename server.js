@@ -13,3 +13,7 @@
     console.log('Merge#1-Merge DEV-ANG__DEV-QA__Main'); // Merge DEV-ANG__DEV-QA__Main
     console.log('Conflic-Merge#1: DEV-ANG'); // Conflic-Merge DEV-ANG
 /* ENDREGION: Dev-Ang */
+
+/* REGION: DEV QA - ANG */
+console.log('Conflic-Merge#2: DEV-ANG - CORRECCION'); // Conflic-Merge DEV-ANG -> DEV-QA
+/* ENDREGION: DEV QA - ANG */
