@@ -1,0 +1,25 @@
+{
+  "name": "advancedgitpractice",
+  "version": "1.0.0",
+  "description": "Practica avanzada en Git",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Craken420/AdvancedGitPractice.git"
+  },
+  "author": "Luis Angel Peña",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Craken420/AdvancedGitPractice/issues"
+  },
+  "homepage": "https://github.com/Craken420/AdvancedGitPractice#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  }
+}
