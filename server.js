@@ -1,4 +1,4 @@
-/* REGION: Dev-Ang */
+/* REGION Merge#0: DevANG */
     const express = require('express');
     const app = express();
 
@@ -10,11 +10,20 @@
     const server = app.listen(port, ()=> {
         console.log(`Server is running in http://localhost:${port}`);
     })
-    console.log('Merge#1-Merge DEV-ANG__DEV-QA__Main'); // Merge DEV-ANG__DEV-QA__Main
-    console.log('Conflic-Merge#1: DEV-ANG'); // Conflic-Merge DEV-ANG
-    console.log('Conflic-Merge#1: DEV-QA'); // Conflic-Merge DEV-QA
-/* ENDREGION: Dev-Ang */
+/* ENDREGION Merge#0: DevANG */
 
-/* REGION: DEV QA - ANG */
-console.log('Conflic-Merge#2: DEV-ANG - CORRECCION'); // Conflic-Merge DEV-ANG -> DEV-QA
-/* ENDREGION: DEV QA - ANG */
+/* REGION: DevQA Err */
+    console.log('ConflicMerge#2: CORRECCION__.DevANG -> DevQA'); // @OVERRIDE-ConflicMerge#2: DevANG 
+/* ENDREGION: DevQA Err */
+
+/* REGION: DevANG -> DevQA */
+    console.log('Merge#1: DevANG -> DevQA -> Main'); // @OVERRIDE-Merge#1: DevANG
+
+    /* REGION: BOTH CHANGES */
+        console.log('ConflicMerge#1: DevANG -> DevQA'); // @OVERRIDE-ConflicMerge#1: DevANG
+        console.log('Rebase#1: DevANG -> DevQA'); // Rebase#1: DevQA
+    /* ENDREGION: BOTH CHANGES */
+
+/* ENDREGION: DevANG -> DevQA */
+
+
