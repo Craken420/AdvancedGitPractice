@@ -1,8 +1,14 @@
 /* Commits */
 Editar último commit no remoto: git commit --amend
+
 Borrar último commit no remoto: git reset --hard HEAD^
+	Sincronizar remote: git push origin -f
 Borrar un commit: git revert (commitName)
 Borrar cambios sin commit: git reset --hard
+Descartar un cambio commiteado: git reset HEAD CONTRIBUTING.md
+Descartar cambios commiteados: git reset HEAD
+Descartar cambios totalmente: git checkout -- .
+	git clean -d -f
 
 /* Logs */
 últimos 2 logs: git log -p -2
