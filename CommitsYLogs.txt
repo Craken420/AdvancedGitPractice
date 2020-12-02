@@ -1,29 +1,68 @@
-/* Commits */
-Editar último commit no remoto: git commit --amend
-Borrar último commit no remoto: git reset --hard HEAD^
-Borrar un commit: git revert (commitName)
-Borrar cambios sin commit: git reset --hard
+Download:  https://git-scm.com/download/win
 
-/* Logs */
-últimos 2 logs: git log -p -2
-Ver log en un rango: git log --since=2.weeks
-Archivos y lineas modificadas en el log: git log --stat
-Logs en linea: git log --pretty=oneline
-Log en formato: git log --pretty=format:"%h - %an, %ar : %s"
-										a82a6d - Scott Chacon, 6 years ago : Change v
-	formatos:
-		%H: Commit hash
-		%h: Abbreviated commit hash
-		%T: Tree hash
-		%t: Abbreviated tree hash
-		%P: Parent hashes
-		%p: Abbreviated parent hashes
-		%an: Author name:
-		%ae: Author email
-		%ad: Author date (format respects the --date=option)
-		%ar: Author date, relative
-		%cn: Committer name
-		%ce: Committer email
-		%cd: Committer date
-		%cr: Committer date, relative
-		%s: Subject
+/* Getting Started*/
+	First-Time Git Setup:
+		Configuraciones y origen: git config --list --show-origin
+		Identidad: git config --global user.name "Nombre"
+		email: git config --global user.email user@example.com
+		Editor de texto: git config --global core.editor "editorName"
+			emacs,
+			Notepad++: "'C:/Program Files/Notepad++/notepad++.exe'
+				-multiInst -notabbar -nosession -noPlugin"
+			git config --global core.editor "'C:\Program Files\Sublime Text 3\sublime_text.exe' --wait"
+		Nombre de la rama default: git config --global init.defaultBranch main
+		Configuraciones: git config --list, git config user.name
+
+	Getting Help:
+		Actualizar Ayuda: Update-Help
+		git help <verb>, example: git help config
+		git <verb> --help, git add -h
+		man git-<verb>, man git-config
+
+/* Git Basics */
+	Getting a Git Repository:
+		Initializing a Repository in an Existing Directory
+			Iniciar git en repositorio: git init
+			Agregar cambios al commit:
+				Archivos por extension: git add *.c
+				Por nombre: git add LICENSE
+				Todo: git add .
+			Confirmar (commit): git commit -m 'Initial project version'
+
+		Cloning an Existing Repositor:
+			Clonar: git clone URL,  example: git clone https://github.com/li
+			Cambiar nombre del proyecto: git clone https://github.com/li myli
+
+	Recording Changes to the Repository:
+		Checking the Status of Your Files
+			Estado de archivos: git status
+				Short: git status -s
+
+		Tracking New Files: git add README
+		
+		Ignoring Files: cat .gitignore
+			*.[oa]: terminacion .o|.a
+			*~: terminan con tilde
+			/node_modules/: Carpeta
+				
+		Viewing Your Staged and Unstaged Changes
+			Comparar: git diff
+			Comparar cambios con su último commit: git diff --staged
+				OR: git diff --cached
+
+		Committing Your Changes:
+			Confirmar cambios: git commit -m "Message"
+
+		Skipping the Staging Area:
+			Saltar git add: git commit -a -m "Message"
+
+		Removing Files:
+			rm PROJECTS.md
+			Ver que esta rastreado(unstaged): git status
+			Remover el rastreo(unstaged): git rm PROJECTS.md, Examples: git rm log/\*.log, git rm \*~
+				Nota: Si ejecuto "add", forzar eliminación con: -f.
+			Mantener archivo local y quitar rastreo git: git rm --cached README
+
+		Moving Files:
+			Renombrar un archivo en git: git mv file_from file_to
+				this command do this: mv README.md README, git rm README.md, git add README
