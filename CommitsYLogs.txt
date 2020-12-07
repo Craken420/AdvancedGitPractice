@@ -6,10 +6,7 @@ Download:  https://git-scm.com/download/win
 		Identidad: git config --global user.name "Nombre"
 		email: git config --global user.email user@example.com
 		Editor de texto: git config --global core.editor "editorName"
-			emacs,
-			Notepad++: "'C:/Program Files/Notepad++/notepad++.exe'
-				-multiInst -notabbar -nosession -noPlugin"
-			git config --global core.editor "'C:\Program Files\Sublime Text 3\sublime_text.exe' --wait"
+			emacs, "'C:\Program Files\Sublime Text 3\sublime_text.exe' --wait"
 		Nombre de la rama default: git config --global init.defaultBranch main
 		Configuraciones: git config --list, git config user.name
 
@@ -66,3 +63,28 @@ Download:  https://git-scm.com/download/win
 		Moving Files:
 			Renombrar un archivo en git: git mv file_from file_to
 				this command do this: mv README.md README, git rm README.md, git add README
+
+	Viewing the Commit History
+		git log
+		últimos -n(2, 3, ...): git log -p -2
+		Rango: git log --since=2.weeks
+		Archivos y lineas modificadas: git log --stat
+		En linea: git log --pretty=oneline
+		Formato: git log --pretty=format:"%h - %an, %ar : %s"
+										  a82a6d - Scott Chacon, 6 years ago : Change v
+			formatos:
+				%H: Commit hash
+				%h: Abbreviated commit hash
+				%T: Tree hash
+				%t: Abbreviated tree hash
+				%P: Parent hashes
+				%p: Abbreviated parent hashes
+				%an: Author name:
+				%ae: Author email
+				%ad: Author date (format respects the --date=option)
+				%ar: Author date, relative
+				%cn: Committer name
+				%ce: Committer email
+				%cd: Committer date
+				%cr: Committer date, relative
+				%s: Subject
