@@ -1,4 +1,15 @@
 Download:  https://git-scm.com/download/win
+/* Commits */
+Editar último commit no remoto: git commit --amend
+
+Borrar último commit no remoto: git reset --hard HEAD^
+	Sincronizar remote: git push origin -f
+Borrar un commit: git revert (commitName)
+Borrar cambios sin commit: git reset --hard
+Descartar un cambio commiteado: git reset HEAD CONTRIBUTING.md
+Descartar cambios commiteados: git reset HEAD
+Descartar cambios totalmente: git checkout -- .
+	git clean -d -f
 
 Getting Started:
 	First-Time Git Setup:
