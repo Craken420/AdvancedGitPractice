@@ -1,6 +1,6 @@
 Download:  https://git-scm.com/download/win
 
-/* Getting Started*/
+Getting Started:
 	First-Time Git Setup:
 		Configuraciones y origen: git config --list --show-origin
 		Identidad: git config --global user.name "Nombre"
@@ -16,7 +16,7 @@ Download:  https://git-scm.com/download/win
 		git <verb> --help, git add -h
 		man git-<verb>, man git-config
 
-/* Git Basics */
+Git Basics:
 	Getting a Git Repository:
 		Initializing a Repository in an Existing Directory
 			Iniciar git en repositorio: git init
@@ -64,27 +64,90 @@ Download:  https://git-scm.com/download/win
 			Renombrar un archivo en git: git mv file_from file_to
 				this command do this: mv README.md README, git rm README.md, git add README
 
-	Viewing the Commit History
-		git log
-		últimos -n(2, 3, ...): git log -p -2
-		Rango: git log --since=2.weeks
-		Archivos y lineas modificadas: git log --stat
-		En linea: git log --pretty=oneline
-		Formato: git log --pretty=format:"%h - %an, %ar : %s"
-										  a82a6d - Scott Chacon, 6 years ago : Change v
-			formatos:
-				%H: Commit hash
-				%h: Abbreviated commit hash
-				%T: Tree hash
-				%t: Abbreviated tree hash
-				%P: Parent hashes
-				%p: Abbreviated parent hashes
-				%an: Author name:
-				%ae: Author email
-				%ad: Author date (format respects the --date=option)
-				%ar: Author date, relative
-				%cn: Committer name
-				%ce: Committer email
-				%cd: Committer date
-				%cr: Committer date, relative
-				%s: Subject
+	Viewing the Commit History:
+			git log
+			últimos -n(2, 3, ...): git log -p -2
+			Rango: git log --since=2.weeks
+			Archivos y lineas modificadas: git log --stat
+			En linea: git log --pretty=oneline
+			Formato: git log --pretty=format:"%h - %an, %ar : %s"
+											a82a6d - Scott Chacon, 6 years ago : Change v
+				formatos:
+					%H: Commit hash
+					%h: Abbreviated commit hash
+					%T: Tree hash
+					%t: Abbreviated tree hash
+					%P: Parent hashes
+					%p: Abbreviated parent hashes
+					%an: Author name:
+					%ae: Author email
+					%ad: Author date (format respects the --date=option)
+					%ar: Author date, relative
+					%cn: Committer name
+					%ce: Committer email
+					%cd: Committer date
+					%cr: Committer date, relative
+					%s: Subject
+				
+	Undoing Things:
+			Editar último commit: git commit --amend
+			Agregar cambios en el último commit:
+				git commit -m 'Initial commit'
+				git add forgotten_file
+				git commit --amend
+
+		Unstaging a Staged File:
+			git add CONTRIBUTING.md, git reset HEAD CONTRIBUTING.md
+
+		Unmodifying a Modified File:
+			git add CONTRIBUTING.md, commit, git checkout -- CONTRIBUTING.md
+
+		Undoing things with git restore: (reset)
+			git restore --staged CONTRIBUTING.md
+
+		Unmodifying a Modified File with git restore
+			git restore CONTRIBUTING.md
+
+	Working with Remotes
+			Saber el remoto: git remote -v  //-> origin https://github.com/Craken420/AdvancedGit
+
+		Adding Remote Repositories
+			git remote add <shortname> <url>: git remote add alias https://github.com/Cra/AdvancedGit2
+				now u can use it: git fetch alias
+		
+		Fetching and Pulling from Your Remotes
+			Info del proyecto remoto: git fetch <remote>
+		
+		Pushing to Your Remotes:
+			git push origin master
+
+		Inspecting a Remote:
+			Info remota especifica: git remote show origin
+
+		Renaming and Removing Remotes:
+			Renombrar: git remote rename pb paul
+			Borrar: git remote remove paul
+
+	Tagging:
+		Listing Your Tags:
+			git tag
+			git tag -l "v1.8.5*"
+
+		Creating Tags:
+			Annotated Tags: git tag -a v1.4 -m "my version 1.4", git show v1.4
+			Lightweight Tags: git tag v1.4-lw, git show v1.4-lw
+
+		Tagging Later:
+			git tag -a v1.2 9fceb02 //--> (ID Commit), git show v1.2
+		
+		Sharing Tags:
+			git push origin v1.5
+			More tha one: git push origin --tags
+		
+		Deleting Tags:
+			local: git tag -d v1.4-lw
+			remote: git push origin :refs/tags/v1.4-lw, git push origin --delete <tagname>
+		
+		Checking out Tags:
+			git checkout v2.0.0
+			crear rama: git checkout -b version2 v2.0.0
