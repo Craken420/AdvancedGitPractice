@@ -1,7 +1,7 @@
 Download:  https://git-scm.com/download/win
 
-Getting Started:
-	First-Time Git Setup:
+1.-Getting Started:
+	1.1__1.6-First-Time Git Setup:
 		Configuraciones y origen: git config --list --show-origin
 		Identidad: git config --global user.name "Nombre"
 		email: git config --global user.email user@example.com
@@ -10,14 +10,14 @@ Getting Started:
 		Nombre de la rama default: git config --global init.defaultBranch main
 		Configuraciones: git config --list, git config user.name
 
-	Getting Help:
+	1.7-Getting Help:
 		Actualizar Ayuda: Update-Help
 		git help <verb>, example: git help config
 		git <verb> --help, git add -h
 		man git-<verb>, man git-config
 
-Git Basics:
-	Getting a Git Repository:
+2.-Git Basics:
+	2.1-Getting a Git Repository:
 		Initializing a Repository in an Existing Directory
 			Iniciar git en repositorio: git init
 			Agregar cambios al commit:
@@ -30,7 +30,7 @@ Git Basics:
 			Clonar: git clone URL,  example: git clone https://github.com/li
 			Cambiar nombre del proyecto: git clone https://github.com/li myli
 
-	Recording Changes to the Repository:
+	2.2-Recording Changes to the Repository:
 		Checking the Status of Your Files
 			Estado de archivos: git status
 				Short: git status -s
@@ -64,7 +64,7 @@ Git Basics:
 			Renombrar un archivo en git: git mv file_from file_to
 				this command do this: mv README.md README, git rm README.md, git add README
 
-	Viewing the Commit History:
+	2.3-Viewing the Commit History:
 			git log
 			últimos -n(2, 3, ...): git log -p -2
 			Rango: git log --since=2.weeks
@@ -89,8 +89,8 @@ Git Basics:
 					%cr: Committer date, relative
 					%s: Subject
 				
-	Undoing Things:
-			Editar último commit: git commit --amend
+	2.4-Undoing Things:
+			Editar último commit: git commit --amend -m "nuevo mensaje"
 			Agregar cambios en el último commit:
 				git commit -m 'Initial commit'
 				git add forgotten_file
@@ -108,7 +108,7 @@ Git Basics:
 		Unmodifying a Modified File with git restore
 			git restore CONTRIBUTING.md
 
-	Working with Remotes
+	2.5-Working with Remotes
 			Saber el remoto: git remote -v  //-> origin https://github.com/Craken420/AdvancedGit
 
 		Adding Remote Repositories
@@ -128,17 +128,14 @@ Git Basics:
 			Renombrar: git remote rename pb paul
 			Borrar: git remote remove paul
 
-	Tagging:
-		Listing Your Tags:
-			git tag
-			git tag -l "v1.8.5*"
+	2.6-Tagging:
+		Listing Your Tags: git tag || git tag -l "v1.8.5*"
 
 		Creating Tags:
 			Annotated Tags: git tag -a v1.4 -m "my version 1.4", git show v1.4
 			Lightweight Tags: git tag v1.4-lw, git show v1.4-lw
 
-		Tagging Later:
-			git tag -a v1.2 9fceb02 //--> (ID Commit), git show v1.2
+		Tagging Later: git tag -a v1.2 9fceb02 //--> (ID Commit), git show v1.2
 		
 		Sharing Tags:
 			git push origin v1.5
@@ -151,3 +148,152 @@ Git Basics:
 		Checking out Tags:
 			git checkout v2.0.0
 			crear rama: git checkout -b version2 v2.0.0
+
+	2.7-Git Aliases:
+		git config --global alias.co checkout
+		git config --global alias.br branch
+		git config --global alias.ci commit
+		git config --global alias.st status
+		git config --global alias.unstage 'reset HEAD --'
+			git unstage fileA = git reset HEAD -- fileA
+		git config --global alias.last 'log -1 HEAD'
+			git last
+		git config --global alias.dtoplog 'reset --hard HEAD^'
+		ejecutar un comando externo: git config --global alias.visual '!(nameCommand: gitk)'
+
+3- Git Branching:
+	3.1-Branches in a Nutshell:
+		Creating a New Branch: git branch testing
+		Switching Branches: git checkout testing
+
+	3.2-Basic Branching and Merging:
+		git checkout -b hotfix
+		git commit -a -m 'Create new footer [issue 53]'
+		git checkout master
+		git merge hotfix
+		Delete branch: git branch -d hotfix
+		Basic Merge Conflicts:
+			git status
+			git mergetool
+
+	3.3-Branch Management:
+		Mostrar ramas: git branch
+		Ramas con commit: git branch -v
+		Mostrar merges: git branch --merged
+		Mostrar no merges: git branch --no-merged
+
+		Changing a branch name:
+			local: git branch --move oldname newname
+			remote: git push --set-upstream origin newname
+			listar remotes y local: git branch --all
+			eliminar rama remote con nombre erroneo: git push origin --delete oldname
+	
+	3.5-Remote Branches:
+		Pushing: git push origin serverfix
+
+		Tracking Branches: Rama acendente que parte de una rama remota (u = --set-upstream-to)
+			Rama remota com local: git checkout --track origin/serverfix
+			Rama remota com local diff nombre: git checkout -b sf origin/serverfix
+			Cargar cambios en rama existente: git branch -u origin/serverfix
+			Listar ramas tracking: git branch -vv
+			Actualizar commits remotos y locales (locales)ahead 3, (remoto)behind 1:
+				git fetch --all; git branch -vv
+
+		Pulling: consiste en:
+			git fetch (indicar remote)-> git merge (combinar)
+			git pull: reconoce el tracking Branch
+
+		Deleting Remote Branches:
+			git push origin --delete serverfix
+	
+	3.6-Rebasing
+		The Basic Rebase: la diferencia es que el historial de commits queda lineal
+			Abortar un rebase: git rebase --abort
+			EL merge conserva los commit separados:
+								experiment:  c4
+											/ \
+				master: c0 <- c1 <- c2 <- c3 <- c5
+								           |
+										master 	   
+			git checkout experiment
+			git rebase master
+								experiment: (c4) temporal
+											/
+				master: c0 <- c1 <- c2 <- c3 <- [c4]
+										   |	  |-> experiment									
+										master 	
+			git checkout master
+			git merge experiment
+											|->experiment 	
+					c0 <- c1 <- c2 <- c3 <- c4
+											|->master 
+			Pasar lo de cliente al main omitiendo al servidor en caso de mas pruebas:
+									  |-> master
+					c0 <- c1 <- c4 <- c5
+							     \ 
+						server	  c2 <- c3 <- c8
+							       \
+						client      c6 <- c7
+				In branch 'client': git rebase --onto master server client
+								       | master
+					c0 <- c1 <- c4 <- c5 <- [c6' <- c7']
+							     \                  |-> client
+						server	  c2 <- c3 <- c8
+							       \
+							       (c6 <- c7) temporal
+									
+				git checkout master
+				git merge client
+									                | master
+					c0 <- c1 <- c4 <- c5 <- c6' <- c7'
+							     \                  |-> client
+						server	  c2 <- c3 <- c8
+				In branch 'server': git rebase master server
+										          | master
+					c0 <- c1 <- c4 <- c5 <- c6 <- c7 <- [c2' <- c3' <- c8']
+							     \                |-> client		    |-> server
+								  (c2 <- c3 <- c8) temporal
+				git checkout master
+				git merge server
+				git branch -d client
+				git branch -d server								   |-> Master
+					c0 <- c1 <- c4 <- c5 <- c6' <- c7' <- c2' <- c3' <- c8'
+				git push --force :  Reescribe el historial en el servidor
+
+			The Perils of Rebasing
+				Server:
+						c1 <- master
+
+				clone Local y hago cambios:
+						c1 <- equipo1/master
+						 \_ c2 <- c3 <- master
+
+					equipo1/master modifica, fusiona y envia al Server:
+							   c5
+							_/	 ^\       
+						c1 <-  c4 <- c6 <- master
+
+					fetch it and merge Local:
+						       c5
+							_/	 ^\       
+						c1 <- c4 <- c6 <- equipo1/master
+							\_ c2 <- c3 _\ Merge:c7  <- master
+
+						rebase an push --force Server:
+								    c5	<- [c4']
+								_/	   ^\       
+							c1 <- (c4 <- c6) temporal
+
+						fetch del server al Local:
+								    c5	 <------ c4' \ equipo1/master
+								_/	   ^\             \
+							c1 <- c4 <- c6             \
+							  \_ c2 <- c3 _\ Merge:c7 <- c8 <- master
+			Rebase When You Rebase
+				git rebase teamone/master
+					Determine qué trabajo es exclusivo de nuestro salvado: (C2, C3, C4, C6, C7)
+					Determinar cuáles no son merge commits (C2, C3, C4)
+					Determine cuáles no se han reescrito en la rama de destino  ( C2 y C3, Ya que C4 es el mismo que C4')
+				Local:
+								|-> equipo1/master
+					c1 <- c5 <- c4' <- c2' <- c3' <- master
