@@ -1,0 +1,27 @@
+Flujo de trabajo: {
+	Centralizado: Repositorio central de entrada unica para cambios (master no trunk), Crea copia local, permitiendo la Ramificación y fusión,
+
+	Ramificación de características: Ramas dedicadas en lugar de la master la cual nunca debe contener código roto,
+	
+	Gitflow: {
+		Definición: Modelo de ramificación estricto. Asigna roles específicos a diferentes ramas y define cómo y cuándo deben interactuar,
+		Eelementos: {
+			master: releases estables y funcionales del software para descargarse. Puede que las últimas mejoras no estén disponibles,
+
+			develop: último release de master. Se integran todas las nuevas características hasta la siguiente release,
+
+			feature-X: mejora o característica a introducir. Salen e integran a develop,
+
+			release-X: cuando se va a publicar la siguiente versión del software y surgen de la rama develop. el desarrollo de nuevas características se congela, y se trabaja en arreglar bugs y generar documentación. Una vez listo para la publicación, se integra en master y se etiqueta con el número de versión correspondiente. Se integran también con develop, ya que su contenido ha podido cambiar debido a nuevas mejoras,
+
+			hotfix-X: corrección de bugs criticos, es posible crear una rama hotfix a partir de la publicación correspondiente en la rama master. Contendrá únicamente cambios para el bug. Se integrará en master, con su etiqueta de versión y en develop.
+		}
+	},
+	Bifurcación: En lugar de un único repositorio del lado del servidor como base código "central", otorga un repositorio del lado del servidor, generando dos repositorios de Git: uno local privado y uno público del lado del servidor.
+
+	Directrices: {
+		Ramas de vida corta: rama separada de la rama de producción, es riesgoso de conflictos de fusión y desafíos de implementación. Las ramas de corta duración promueven fusiones y despliegues más limpios.
+		
+		Minimizar y simplificar las reversiones: preveniene fusiones que tendrán que revertirse. Rama de prueba antes de fusion en master
+	}
+}
