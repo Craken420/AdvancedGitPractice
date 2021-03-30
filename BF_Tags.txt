@@ -1,0 +1,7 @@
+﻿
+
+niveles de ajuste: {
+	 Mayor: alteración de uso e incompatibilidad,
+	 menor: ampliación en funcionalidad, manteniendo completa compatibilidad con la versión anterior ( 1.0.0 - 1.1.0),
+	 pequeño: cambio que no altera la funcionalidad ni la interfaz de trabajo ( 1.0.0 - 1.0.1)
+}
