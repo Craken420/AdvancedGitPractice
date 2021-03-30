@@ -200,13 +200,48 @@
 			Determinar cuáles no son merge commits (C2, C3, C4)
 			Determine cuáles no se han reescrito en la rama de destino  ( C2 y C3, Ya que C4 es el mismo que C4')
 
+OTHERS:
+	/* Remote */
+		git push origin -f: Sincronizar remote forzandolo
 
+	/* Stash */
+		git stash [push -m "Mensaje"]
+		git stash list
+		git stash show stash@{n} -v
+		git stash apply [stash@{n}]
+		git stash pop [stash@{n}]
+		git stash drop [stash@{n}]
 
+	/* Borra y descartar cambios */
+		git reset --hard HEAD^: Borrar último commit
+		git revert (commitName): Borrar un commit
+		git reset --hard: Borrar cambios sin commit
+		git reset HEAD: Descartar cambios commiteados
+		git checkout -- . : Descartar cambios totalmente
+		git clean -d -f : Descartar archivos nuevos
 
+	/* Bajar cambios del repositorio remoto */
+		git branch --set-upstream-to=origin/master master:
+			Especificar rama remota - la rama local
+		git pull: Fusionar remoto y local automáticamente:
+		git fetch / git merge origin/master :
+			Fusionar remoto y local manualmente y aplicar los cambios
 
+	/* Editor de texto */
+		git config --unset core.editor:
+			Eliminar cualquier rastro de una configuración de un editor de texto
+			ageno a Git y quedarse con el pre-configurado por defecto que es VIM
+		git config --global --unset-all core.editor:
+			En una situación alterna donde se tengan más configuraciones
+			de varios editores de texto, o por si no funciona el comando anterior usar
 
+	/* Corregir un commit determinado */
+		Ir al commit, crear rama "commitCorregido", modificar y aceptar cambios
+		Cambiar a la rama a corregir y agregar git rebase commitCorregido
+		aceptar y corregir los conflictos, git mergetool,
+			VIM: i: para insertar, y :wq guardar/salir
+		git rebase --continue y asi sucesivamente
 
-
-
-
+	/* Rescribiendo la historia */
+		git rebase -i HEAD~3: Al commit deseado escribir reword y editar el/los commits
 		
