@@ -1,0 +1,79 @@
+git Mejores practicas en los Commits: {
+
+	Tips: {
+		0: Organizar un flujo de trabajo,
+
+		1: Una corrección o tarea por separado,
+
+		2: Commitear cambios o bloques de trabajo completos, guardando versiones del trabajo en curso (rebase o histedit (Hg) ),
+
+		3: Documentar cambios, que código ha cambiado y cómo, sin mirar el código; Razón detrás de cambios no cambios que contiene ese commit (El por qué no qué cambios, lo que debe hacer, no lo que hiciste): {
+			Ejemplo:  MiClase:: usa abcd en lugar de xyzw en el métodomiMetodo( ver #1234)
+		},
+		3.1: Consejo: Si estás teniendo dificultades para resumir, podrías estar realizando un commit con demasiados cambios de una sola vez.
+			Intenta realizar commits atómicos.
+		4: Documentar por qué se realizó ese cambio en el código. Si se cambia algo hay que documentarlo: {
+			Ejemplo: miMetodo( tuyu)// tyuyu está ordenado así que es mejor utilizar abcd en lugar de cyzw
+		},
+
+		5: No hacer commit de código comentado, solo hacer uso del código útil,
+
+		6: Si te equivocas revierte y arregla, no sirve un commit erroneo,
+
+		7: Cambio de diseño por separado,
+
+		8: Commits conjuntos para archivos y recursos adicionales relacionados
+	},
+	Reglas: {
+
+		1: Escribir comentarios commits antes de codificar,
+
+	}
+	Commit_Message:{
+
+		Estructura del Mensaje: {
+
+			1.TYPE/TIPO_(titulo): {
+
+				feat: Una nueva característica,
+
+				fix: Solución de un bug,
+
+				docs: Cambios en la documentacion,
+
+				style: Formato, comas, puntos, etc; Sin cambios en el código,
+
+				refactor: Refactorización,
+
+				test: Se añadieron pruebas, refactorizacion de pruebas; Sin cambios en el codigo,
+
+				chore: Actualización de tareas de build, configuración del admin. de paquetes; Sin cambios en el código
+			},
+
+			2.SUBJECT/ASUNTO: {
+				1: Max 50 caracteres,
+				2: Inicio con mayuscula,
+				3: No terminar con un punto,
+				4: Tiempo verbal imperativo (Ejemplo: change no "changed" o "changes"),
+				5: Es mejor en ingles
+				6: Test "If applied, this commit will" (Commit example: Add list of videos on movie details) 
+			},
+
+			3.BODY/CUERPO (opcional): {
+				1: Explicacion, contexto y Consecuencias ( ¿Que y Porque?, no el ¿Como? ),
+				2: Max 72 caracteres,
+				3: Termina las frases con punto
+			},
+
+			4.FOOTER/PIE (opcional): Seguimiento de los IDs con incidencias.
+			
+			Example: {
+				Asunto: feat: Titulos de cambios en maximo 50 caracteres,
+
+				Cuerpo: qué y por qué, no cómo (el código lo hace), Consecuencias. Linea blanca separa secciones
+
+				Pie: Incase of issue, Resolves: #123. See also: #456, #789
+			}
+		}
+	}
+}
