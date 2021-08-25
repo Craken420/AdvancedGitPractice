@@ -1,4 +1,4 @@
-﻿Download:  https://git-scm.com/download/win
+Download:  https://git-scm.com/download/win
 
 1.-Getting Started:
 1.2-First-Time Git Setup:
@@ -103,7 +103,7 @@
 		git remote add <shortname> <url>: 
 		now u can use it: git fetch alias
 		
-	git fetch <remote> 	    : Fetching and Pulling
+	git fetch <remote> 	        : Fetching and Pulling
 	git push origin master	    : Enviar al remoto
 	git remote show origin	    : Info remota especifica 
 	git remote rename pb paul   : Renombrar
@@ -168,14 +168,15 @@
 	git pull						: Extrae cambios del remoto asendente por defecto
 	git push origin --delete serverfix			: Borrar remotas
 			
-	
 	Rebase: historial de commits lineal
 		git checkout experiment
 		git rebase master
 		git checkout master
 		git merge experiment
-	git rebase --abort	: Abortar un rebase: 
 	
+
+	Abortar un rebase: git rebase --abort
+
 	Interesting rebase:		
 	  git rebase --onto master server client	: tomar master omitir server y pasarlo a cliente
 	  git checkout master
@@ -203,6 +204,12 @@
 OTHERS:
 	/* Remote */
 		git push origin -f: Sincronizar remote forzandolo
+
+	/* Agregar repositorio local y tratarlo como remoto */	
+
+		git init --bare myproject.git
+		git clone path/myproject.git
+		git push origin master
 
 	/* Stash */
 		git stash [push -m "Mensaje"]
@@ -245,3 +252,51 @@ OTHERS:
 	/* Rescribiendo la historia */
 		git rebase -i HEAD~3: Al commit deseado escribir reword y editar el/los commits
 		
+	/* Listar Archivos Trackeados */
+
+		git ls-tree -r master --name-only: Archivos rastreados
+		git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d':
+			lista de archivos que alguna vez existieron (incluyendo archivos eliminados)
+
+    /* Borrar Archivos Trackeados */
+
+    	(Nuevo) git update-index --skip-worktree <file>: Quitar rastreo a pequeños archivos en repositorio
+		(Nuevo) git update-index --no-skip-worktree <file>: Cancelar la eliminación del rastreo
+
+		git update-index --assume-unchanged <file>: Quitar rastreo a grandes archivos en repositorio
+			
+		git rm --cached <file>: Eliminar del repositorio pero mantener local
+
+		git rm -r --cached <folder>:
+			Eliminar archivos de carpeta recursivamente;
+				Nota: se reflejan en la próxima confirmación.
+					git rm -r --cached . && git add . && git commit -am "Remove ignored files"
+
+			ADVERTENCIA: No eliminará el archivo físico de su local, eliminará los archivos
+				de las máquinas de otros desarrolladores despues de un git pull.
+
+		1) Tomar lista de archivos ignorados con \0 como separador,
+		2) eliminar del índice
+		3) confirmar cambios.
+			1) git ls-files -z --ignored --exclude-standard | xargs -0
+			2) git rm --cached
+			3) git commit -am "Remove ignored files"
+
+		Atender de manera segura/correcta a los caracteres "desagradables" en los nombres de los archivos:
+			args(-z) para 'ls-files' y args(-0) para xargs
+
+
+		Script de PowerShell Windows: eliminar archivos del repositorio Git que coincidan con su lista de exclusión.
+
+		# Get files matching exclusionsfrom .gitignore
+		# Excluding comments and empty lines
+			$ignoreFiles =  gc .gitignore | ?{$_ -notmatch  "#"} |  ?{$_ -match  "\S"} | % {
+			                    $ignore = "*" + $_ + "*"
+			                    (gci -r -i $ignore).FullName
+			                }
+			$ignoreFiles = $ignoreFiles| ?{$_ -match  "\S"}
+
+		# Remove each of these file from Git
+			$ignoreFiles | % { git rm $_}
+
+		git add .
